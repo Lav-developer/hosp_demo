@@ -53,7 +53,7 @@ export default function Stats() {
       <Reveal className={cn(containerClass)}>
         <div
           ref={ref}
-          className="grid grid-cols-2 divide-line lg:grid-cols-4 lg:divide-x max-lg:gap-y-0 max-lg:[&>*:nth-child(odd)]:border-r max-lg:[&>*:nth-child(-n+2)]:border-b"
+          className="grid grid-cols-2 divide-line [&>*]:border-line max-lg:gap-y-0 max-lg:[&>*:nth-child(odd)]:border-r max-lg:[&>*:nth-child(-n+2)]:border-b lg:grid-cols-4 lg:divide-x"
         >
           {STATS.map((stat) => (
             <StatItem key={stat.label} {...stat} active={active} />

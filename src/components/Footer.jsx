@@ -94,7 +94,7 @@ export default function Footer() {
               {hospitalConfig.address}
             </li>
             <li>
-              <a href={hospitalConfig.phoneHref} className="flex items-center gap-3 transition-colors hover:text-white">
+              <a href={hospitalConfig.phoneHref} className="flex items-center gap-3 py-0.5 transition-colors hover:text-white">
                 <PhoneCall size={16} className="shrink-0 text-primary-400" aria-hidden="true" />
                 {hospitalConfig.phone}
               </a>
@@ -139,7 +139,7 @@ export default function Footer() {
             href={waLink(developer.whatsapp, developer.whatsappMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-semibold text-accent-300 transition-colors hover:text-accent-200"
+            className="inline-flex items-center gap-1.5 py-1 font-semibold text-accent-300 transition-colors hover:text-accent-200"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12.04 2a9.9 9.9 0 0 0-8.4 15.2L2.1 21.8l4.72-1.5A9.9 9.9 0 1 0 12.04 2Zm5.8 14.1c-.25.7-1.45 1.35-2 1.4-.5.06-1.13.08-1.83-.12a16 16 0 0 1-1.66-.6c-2.92-1.26-4.83-4.2-4.98-4.4-.14-.2-1.18-1.58-1.18-3s.74-2.13 1-2.42c.27-.29.58-.36.78-.36s.4 0 .57.01c.19.01.44-.07.68.52.25.6.85 2.07.92 2.22.07.15.12.32.02.51-.1.2-.15.32-.29.5-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.75 1.24 1.61 2 1.1.99 2.03 1.3 2.32 1.44.29.15.46.13.63-.08.17-.2.73-.85.92-1.14.2-.29.4-.24.66-.15.27.1 1.7.8 1.99.95.29.14.48.22.55.34.07.13.07.74-.17 1.45Z" />

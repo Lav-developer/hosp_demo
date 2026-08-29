@@ -69,7 +69,7 @@ export default function Doctors({ onBook }) {
           />
           <Reveal delay={150}>
             <Button as="a" href="#appointment" variant="secondary" size="lg" className="shrink-0">
-              View All Doctors
+              Book a Consultation
               <ArrowRight size={17} aria-hidden="true" />
             </Button>
           </Reveal>

@@ -46,10 +46,10 @@ const browser = await puppeteer.launch({
     }
     window.scrollTo(0, 0);
   });
-  // Wait until every image has finished loading (max ~6s)
+  // Wait until every image has finished loading (max ~15s, dev server may be cold)
   await page.waitForFunction(
     () => [...document.images].every((i) => i.complete),
-    { timeout: 8000 }
+    { timeout: 15000 }
   ).catch(() => {});
   await new Promise((r) => setTimeout(r, 400));
 

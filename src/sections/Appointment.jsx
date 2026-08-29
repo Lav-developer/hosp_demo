@@ -103,11 +103,17 @@ export default function Appointment({ bookingRequest }) {
   /* Apply prefills coming from the Departments / Doctors sections */
   useEffect(() => {
     if (!bookingRequest) return;
-    setForm((prev) => ({
-      ...prev,
-      department: bookingRequest.departmentId || prev.department,
-      doctor: bookingRequest.doctorId || (bookingRequest.departmentId ? prev.doctor : prev.doctor),
-    }));
+    setForm((prev) => {
+      const department = bookingRequest.departmentId || prev.department;
+      const prevDoctorValid = doctors.some(
+        (d) => d.id === prev.doctor && d.departmentId === department
+      );
+      return {
+        ...prev,
+        department,
+        doctor: bookingRequest.doctorId || (prevDoctorValid ? prev.doctor : ""),
+      };
+    });
     setStatus("idle");
     const t = setTimeout(() => nameInputRef.current?.focus({ preventScroll: true }), 450);
     return () => clearTimeout(t);

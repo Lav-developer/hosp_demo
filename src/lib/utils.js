@@ -69,7 +69,7 @@ export function applyThemeColors(colors) {
   const apply = (name, base, fallback) => {
     const hex = (base || fallback).toLowerCase();
     if (hex === fallback) return; // keep the hand-tuned palette in index.css
-    buildScale(hex).forEach((value, shade) => {
+    Object.entries(buildScale(hex)).forEach(([shade, value]) => {
       root.style.setProperty(`--color-${name}-${shade}`, value);
     });
   };

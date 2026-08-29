@@ -1,7 +1,7 @@
-import { ArrowUpRight, MapPin } from "lucide-react";
-import facilities from "../data/facilities";
+import { ArrowUpRight, CheckCircle2, MapPin } from "lucide-react";
+import { amenities, facilities } from "../data/facilities";
 import hospitalConfig from "../config/hospital";
-import { cn, containerClass } from "../lib/utils";
+import { containerClass } from "../lib/utils";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
@@ -26,16 +26,12 @@ export default function Facilities() {
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {facilities.map((facility, i) => (
-            <Reveal
-              key={facility.id}
-              delay={(i % 3) * 90}
-              className={cn(facility.featured && "sm:col-span-2")}
-            >
-              <figure className="group relative h-full min-h-[220px] overflow-hidden rounded-2xl shadow-sm ring-1 ring-navy-900/5 transition-shadow duration-300 hover:shadow-lift lg:min-h-[260px]">
+            <Reveal key={facility.id} delay={i * 90}>
+              <figure className="group relative h-full overflow-hidden rounded-2xl shadow-sm ring-1 ring-navy-900/5 transition-shadow duration-300 hover:shadow-lift">
                 <img
                   src={facility.image}
                   alt={`${facility.title} at MediCare Multispeciality Hospital`}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                   loading="lazy"
                   decoding="async"
                 />
@@ -48,7 +44,7 @@ export default function Facilities() {
                     <h3 className="font-display text-[17px] font-bold tracking-tight text-white">
                       {facility.title}
                     </h3>
-                    <p className="mt-1 max-w-sm text-[13px] leading-snug text-white/75">
+                    <p className="mt-1 text-[13px] leading-snug text-white/75">
                       {facility.description}
                     </p>
                   </div>
@@ -63,6 +59,24 @@ export default function Facilities() {
             </Reveal>
           ))}
         </div>
+
+        {/* On-campus amenities */}
+        <Reveal delay={140}>
+          <ul className="mt-8 flex flex-wrap items-center gap-2.5">
+            <li className="mr-1 text-[13px] font-bold uppercase tracking-[0.14em] text-navy-800/60">
+              Also on campus
+            </li>
+            {amenities.map((item) => (
+              <li
+                key={item}
+                className="flex items-center gap-1.5 rounded-full border border-line bg-white px-3.5 py-2 text-[13px] font-semibold text-navy-800"
+              >
+                <CheckCircle2 size={13} className="text-accent-600" aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
     </section>
   );
