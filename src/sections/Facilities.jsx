@@ -1,7 +1,7 @@
 import { ArrowUpRight, CheckCircle2, MapPin } from "lucide-react";
 import { amenities, facilities } from "../data/facilities";
 import hospitalConfig from "../config/hospital";
-import { containerClass } from "../lib/utils";
+import { cn, containerClass } from "../lib/utils";
 import Button from "../components/Button";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
@@ -26,12 +26,19 @@ export default function Facilities() {
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {facilities.map((facility, i) => (
-            <Reveal key={facility.id} delay={i * 90}>
-              <figure className="group relative h-full overflow-hidden rounded-2xl shadow-sm ring-1 ring-navy-900/5 transition-shadow duration-300 hover:shadow-lift">
+            <Reveal
+              key={facility.id}
+              delay={(i % 3) * 90}
+              className={cn(
+                facility.size === "featured" && "sm:col-span-2",
+                facility.size === "wide" && "sm:col-span-2 lg:col-span-3"
+              )}
+            >
+              <figure className="group relative h-[220px] overflow-hidden rounded-2xl shadow-sm ring-1 ring-navy-900/5 transition-shadow duration-300 hover:shadow-lift sm:h-[250px] lg:h-[280px]">
                 <img
                   src={facility.image}
                   alt={`${facility.title} at MediCare Multispeciality Hospital`}
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                   loading="lazy"
                   decoding="async"
                 />
@@ -44,7 +51,7 @@ export default function Facilities() {
                     <h3 className="font-display text-[17px] font-bold tracking-tight text-white">
                       {facility.title}
                     </h3>
-                    <p className="mt-1 text-[13px] leading-snug text-white/75">
+                    <p className="mt-1 max-w-md text-[13px] leading-snug text-white/75">
                       {facility.description}
                     </p>
                   </div>

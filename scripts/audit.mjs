@@ -38,13 +38,15 @@ const browser = await puppeteer.launch({
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
   page.on("pageerror", (e) => errors.push(`PAGE ERROR: ${e.message}`));
   await page.goto(URL, { waitUntil: "networkidle0", timeout: 60000 });
-  // Scroll through the page so lazy-loaded images fetch, then return to top
+  // Scroll through the page so lazy-loaded images fetch, then return to top.
+  // NOTE: use behavior:"instant" — the site's `scroll-behavior: smooth` would
+  // otherwise animate every scrollTo call and the page would barely move.
   await page.evaluate(async () => {
     for (let y = 0; y < document.body.scrollHeight; y += 600) {
-      window.scrollTo(0, y);
+      window.scrollTo({ top: y, behavior: "instant" });
       await new Promise((r) => setTimeout(r, 100));
     }
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" });
   });
   // Wait until every image has finished loading (max ~15s, dev server may be cold)
   await page.waitForFunction(
